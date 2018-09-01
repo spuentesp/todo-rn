@@ -1,25 +1,18 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { TodoDetail } from './TodoDetail';
+import connect from "react-redux/es/connect/connect";
 
-export default class TodoList extends React.Component {
+class TodoList extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = { todos: [
-                {title:'todo1',
-                    detail:'esto es un todo'},
-                {title:'todo2',
-                    detail:'esto es un todo'},
-                {title:'todo3',
-                    detail:'esto es un todo'},
-                {title:'todo4',
-                    detail:'esto es un todo'},
-            ] };
     }
 
     renderTodos() {
-        return this.state.todos.map(todo =>
+        console.log('render this::',this);
+        console.log('render state::',this.props.state);
+        return this.props.state.todos.map(todo =>
             <TodoDetail key={todo.title} todoItem={todo} />
         );
     }
@@ -32,3 +25,12 @@ export default class TodoList extends React.Component {
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    console.log('load state::',state);
+    return {
+        state: state
+    }
+};
+export default connect(mapStateToProps)(TodoList);

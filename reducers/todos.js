@@ -14,6 +14,9 @@ const todos = (state = [], action) => {
             return state.filter(todo =>
                 todo.id !== action.id
             );
+        case 'GET_TODOS':
+            console.log('pasa x reducer');
+            return state;
         default:
             return state
     }

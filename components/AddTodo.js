@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (value) => {
             dispatch(addTodo(value.title,value.text));
-            this.props.navigation.navigate('TodoList')
+            this.props.navigation.navigate('TodoApp')
         }
     }
 };

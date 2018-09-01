@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button,ScrollView } from 'react-native'
 import Header from './Header';
-import TodoList from "./TodoList";
 import { connect } from  'react-redux';
-import {setSection} from "../actions/sections";
+import TodoList from "./TodoList";
 
 class TodoAppU6 extends React.Component {
     styles = {
@@ -16,7 +15,7 @@ class TodoAppU6 extends React.Component {
             <ScrollView style={styles.container}>
                 <Header title={this.props.selSection}/>
                     <TodoList/>
-                <Button title='Login' onPress={() => this.props.navigation.navigate('AddTodo')}/>
+                <Button title='Add Todo' onPress={() => this.props.navigation.navigate('AddTodo')}/>
             </ScrollView>
         );
     }
@@ -24,12 +23,6 @@ class TodoAppU6 extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddTodoClick: () => {
-            dispatch(setSection('addTodo'))
-        },
-        onTodoListClick: () => {
-            dispatch(setSection('todoList'))
-        }
     }
 };
 const mapStateToProps = (state) => {
