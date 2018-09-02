@@ -4,7 +4,7 @@ const apiUrl = 'http://10.0.2.2:3000/todos';
 
 export const addTodo = (id,title,text) => {
     return (dispatch) => {
-        axios.post('/todo', {
+        axios.post(apiUrl, {
             id: id,
             title: title,
             text: text

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native'
 import Card from "./Card";
 import CardSection from "./CardSection";
-import {addTodo} from "../actions/todos";
+import {addTodo, fetchTodos} from "../actions/todos";
 
 import { connect } from  'react-redux';
 var t = require('tcomb-form-native');
@@ -55,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (value) => {
             dispatch(addTodo(value.id,value.title,value.text));
+            dispatch(fetchTodos());
         }
     }
 };

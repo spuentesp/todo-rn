@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteTodo: (id) => {
             dispatch(deleteTodo(id));
+            dispatch(fetchTodos());
         }
     }
 };
