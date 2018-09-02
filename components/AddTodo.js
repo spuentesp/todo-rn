@@ -23,6 +23,10 @@ class AddTodo extends React.Component {
         let id = this.props.state.todos.length;
         value.id = id;
         this.props.onSubmit(value);
+
+    }
+
+    cerrarTodoAction(){
         this.props.navigation.navigate('TodoApp')
     }
 
@@ -38,7 +42,7 @@ class AddTodo extends React.Component {
                         </Button>
                     </View>
                     <View style={{flex:1}} >
-                        <Button title='Cerrar' onPress={() => this.props.navigation.navigate('TodoList')}/>
+                        <Button title='Cerrar' onPress={this.cerrarTodoAction.bind(this)}/>
                     </View>
                 </CardSection>
             </Card>
