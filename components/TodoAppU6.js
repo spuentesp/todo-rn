@@ -16,6 +16,7 @@ class TodoAppU6 extends React.Component {
                 <Header title={this.props.selSection}/>
                     <TodoList/>
                 <Button title='Add Todo' onPress={() => this.props.navigation.navigate('AddTodo')}/>
+                <Button title='Show Camera' onPress={() => this.props.navigation.navigate('CameraComponent')}/>
             </ScrollView>
         );
     }

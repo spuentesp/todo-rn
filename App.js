@@ -7,6 +7,7 @@ import { StackNavigator } from 'react-navigation';
 import AddTodo from "./components/AddTodo";
 import TodoApp from "./components/TodoAppU6";
 import { Provider } from "react-redux";
+import CameraComponent from "./components/CameraComponent";
 
 const RootStack = StackNavigator({
         TodoApp:{
@@ -14,6 +15,9 @@ const RootStack = StackNavigator({
         },
         AddTodo:{
             screen:AddTodo
+        },
+        CameraComponent:{
+            screen:CameraComponent
         }
     },
     {
