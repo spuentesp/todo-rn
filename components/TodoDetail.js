@@ -2,9 +2,16 @@ import React from 'react';
 import { Text, View,Button } from 'react-native';
 import Card  from './Card';
 import CardSection from './CardSection';
+import {deleteTodo, fetchTodos} from "../actions/todos";
+import connect from "react-redux/es/connect/connect";
 
-export class TodoDetail extends React.Component {
+class TodoDetail extends React.Component {
 
+    deleteTodo(){
+        let id = this.props.todoItem.id;
+        console.log(id)
+        this.props.deleteTodo(id)
+    }
     render() {
         return (
             <Card>
@@ -18,13 +25,8 @@ export class TodoDetail extends React.Component {
                 </CardSection>
                 <CardSection>
                     <View style={{flex:1 , marginRight:10}} >
-                        <Button title='completar' onPress={() => console.log('click')}>
+                        <Button title='completar' onPress={() => this.deleteTodo()}>
                             'Completar'
-                        </Button>
-                    </View>
-                    <View style={{flex:1}} >
-                        <Button title='Cerrar' onPress={() => console.log('click')}>
-                            'Cerrar'
                         </Button>
                     </View>
                 </CardSection>
@@ -32,6 +34,22 @@ export class TodoDetail extends React.Component {
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        state: state
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteTodo: (id) => {
+            dispatch(deleteTodo(id));
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(TodoDetail);
+
 
 const styles = {
     containerStyle: {

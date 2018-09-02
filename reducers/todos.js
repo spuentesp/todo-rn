@@ -9,14 +9,15 @@ const todos = (state = [], action) => {
                     text: action.text,
                     completed: false
                 }
-            ]
+            ];
         case 'REMOVE_TODO':
             return state.filter(todo =>
                 todo.id !== action.id
             );
         case 'GET_TODOS':
-            console.log('pasa x reducer');
             return state;
+        case 'FETCH_TODOS_SUCCESS':
+            return action.todos;
         default:
             return state
     }

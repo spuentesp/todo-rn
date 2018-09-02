@@ -23,8 +23,10 @@ const RootStack = StackNavigator({
 export default class App extends React.Component {
 
     render() {
+        let store = createStore(todoAppReducers,applyMiddleware(thunk));
+
         return (
-            <Provider store={createStore(todoAppReducers,applyMiddleware(thunk))}>
+            <Provider store={store}>
                 <RootStack />
             </Provider>
         );

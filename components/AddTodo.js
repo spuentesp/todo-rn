@@ -17,9 +17,13 @@ class AddTodo extends React.Component {
 
     addTodoAction(){
         let value = this.refs.form.getValue();
-        if (value) {
-            this.props.onSubmit(value)
+        if (!value) {
+            return;
         }
+        let id = this.props.state.todos.length;
+        value.id = id;
+        this.props.onSubmit(value);
+        this.props.navigation.navigate('TodoApp')
     }
 
     render() {
@@ -50,8 +54,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (value) => {
-            dispatch(addTodo(value.title,value.text));
-            this.props.navigation.navigate('TodoApp')
+            dispatch(addTodo(value.id,value.title,value.text));
         }
     }
 };

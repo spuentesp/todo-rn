@@ -1,6 +1,25 @@
-let nextTodoId = 0;
+import axios from 'axios';
 
-export const addTodo = (title,text) => {
+const apiUrl = 'http://10.0.2.2:3000/todos';
+
+export const addTodo = (id,title,text) => {
+    return (dispatch) => {
+        axios.post('/todo', {
+            id: id,
+            title: title,
+            text: text
+        }).then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response;
+            })
+            .then(() => dispatch(addTodoStore(id)))
+            .catch((error) => {throw Error(error)});
+    };
+};
+
+export const addTodoStore = (title,text) => {
     return {
         type: 'ADD_TODO',
         title,
@@ -8,31 +27,50 @@ export const addTodo = (title,text) => {
     };
 };
 
-export const deleteTodo = (id) => {
-    return {
-        type: 'REMOVE_TODO',
-        id
-    };
-};
-
-export function removeTodo(id) {
+export function deleteTodo(id) {
     return (dispatch) => {
-        axios.delete(`http://10.0.2.2:3000/todos/${id}`)
+        axios.delete(`${apiUrl}/${id}`)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
                 return response;
             })
-            .then(() => dispatch(deleteTodo(id)))
+            .then(() => dispatch(removeTodo(id)))
             .catch((error) => {throw Error(error)});
     };
 }
 
-
-export const getTodos = () => {
-    console.log('pasa por action');
+export const removeTodo = (id) => {
     return {
-        type: 'GET_TODOS'
+        type: 'REMOVE_TODO',
+        id
+    };
+};
+
+
+export const fetchTodosSuccess = (todos) => {
+    return {
+        type: 'FETCH_TODOS_SUCCESS',
+        todos
+    }
+};
+//Async Action
+export const fetchTodos = () => {
+    return (dispatch) => {
+        return axios.get(apiUrl)
+            .then(response => {
+                dispatch(fetchTodosSuccess(response.data))
+            })
+            .catch(error => {
+                throw(error);
+            });
+    };
+};
+
+export const setTodos = (todos) => {
+    return {
+        type: 'SET_TODOS',
+        todos
     };
 };
