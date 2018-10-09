@@ -1,0 +1,9 @@
+{
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 564,
+  "expoServerNgrokUrl": "https://nx-dex.spuentesp.todo-appa.exp.direct",
+  "packagerNgrokUrl": "https://packager.nx-dex.spuentesp.todo-appa.exp.direct",
+  "ngrokPid": 6912,
+  "devToolsPort": 19002
+}
